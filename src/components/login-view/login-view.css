@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+
+.base-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.header {
+    font-family: Montserrat 700;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: white;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    margin-top: 2em;
+    width: 15em;
+}
+
+
+Form {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Montserrat;
+    margin-bottom: 31px;
+    color: white;
+}
+
+.userName {
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin-top: 15px;
+}
+
+.toBtn {
+    margin-top: 30px;
+    color: white;
+}

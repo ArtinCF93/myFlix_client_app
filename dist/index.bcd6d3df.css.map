@@ -1,0 +1,1 @@
+{"mappings":"AAAA;AACA;AACA;ACFA;AACA;AACA","sources":["src/components/login-view/login-view.css","src/components/registration-view/registration-view.css"],"sourcesContent":[".btn {\r\n    margin-top: 15px;\r\n}","Form {\r\n    margin-top: 70px;\r\n}"],"names":[],"version":3,"file":"index.bcd6d3df.css.map","sourceRoot":"/__parcel_source_root/"}

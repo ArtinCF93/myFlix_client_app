@@ -1,0 +1,9 @@
+.registrationForm {
+    margin-top: 70px;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

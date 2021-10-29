@@ -1,0 +1,1 @@
+First submitted assignemnt: Imported React into project, created an example class.
