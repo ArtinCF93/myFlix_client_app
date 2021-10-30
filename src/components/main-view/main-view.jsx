@@ -224,7 +224,7 @@ class MainView extends React.Component {
                     <Route path="/users/:Username" render={({match, history}) => {
                         if (!user) return <LoginView
                             onLoggedIn={user => this.onLoggedIn(user)} />
-                        if (movies.length === 0) {
+                        if (movies.length === 0 || users.length === 0) {
                             return <div>...loading</div>;
                         }
                         return <Col className='movieView d-flex justify-content-center'>

@@ -13,13 +13,10 @@ export class ProfileView extends React.Component {
 
 
     this.state = {
-      Username: null,
+      Username: props.user.Username,
       Password: null,
-      Email: null,
-      Birthday: null,
-      favorites: [],
-      movies: [],
-      users: [],
+      Email: props.user.Email,
+      Birthday: props.user.Birthday
     };
   }
 
@@ -30,7 +27,7 @@ export class ProfileView extends React.Component {
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
-    axios.delete(`https://myflix-movie.herokuapp.com/users/${username}`, {
+    axios.delete(`https://quiet-headland-10477.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -45,16 +42,16 @@ export class ProfileView extends React.Component {
       });
   };
 
-  removeFavMovie() {
+  removeFavMovie(id) {
     const token = localStorage.getItem('token');
     const Username = localStorage.getItem('user');
-    let movie = this.state.movies;
+    let movie = this.props.movies;
 
-    axios.delete(`https://theflix.herokuapp.com/users/${Username}/movies/${movie._id}` , {
+    axios.delete(`https://quiet-headland-10477.herokuapp.com/users/${Username}/movies/${id}` , {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => {
-      alert (`${movie.Title} was added to your Favorites`)
+      alert (`${movie.Title} was deleted from your Favorites`)
       window.location.reload();   
     })
     .catch(function (error) {
@@ -62,17 +59,17 @@ export class ProfileView extends React.Component {
     })
   }
 
-  profileUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
+  profileUpdate(e) {
     e.preventDefault();
     const username = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     axios
-      .put(`https://myflix-movie.herokuapp.com/users/${username}`,
+      .put(`https://quiet-headland-10477.herokuapp.com/users/${username}`,
         {
-          Username: newUsername ? newUsername : this.state.Username,
-          Password: newPassword ? newPassword : this.state.Password,
-          Email: newEmail ? newEmail : this.state.Email,
-          Birthday: newBirthday ? newBirthday : this.state.Birthday,
+          Username: this.state.Username,
+          Password: this.state.Password,
+          Email: this.state.Email,
+          Birthday: this.state.Birthday,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -85,8 +82,8 @@ export class ProfileView extends React.Component {
           Email: response.data.Email,
           Birthday: response.data.Birthday,
         });
-        localStorage.setItem('user', this.state.Username);
-        window.open(`/client/users/${username}`, '_self');
+        localStorage.setItem('user', response.data.Username);
+        window.open(`/users/${response.data.Username}`, '_self');
       })
       .catch(function (error) {
         console.log(error);
@@ -94,19 +91,19 @@ export class ProfileView extends React.Component {
   }
 
   setUsername(input) {
-    this.Username = input;
+    this.setState({Username: input})
   }
 
   setPassword(input) {
-    this.Password = input;
+    this.setState({Password: input})
   }
 
   setEmail(input) {
-    this.Email = input;
+    this.setState({Email: input})
   }
 
   setBirthday(input) {
-    this.Birthday = input;
+    this.setState({Birthday: input})
   }
 
   render() {
@@ -138,9 +135,7 @@ export class ProfileView extends React.Component {
               {user.Birthday}
             </Card.Text>
             <Card.Text>
-              <h3>
                 My Favorites:
-              </h3>
             </Card.Text>
             <Card.Body>
               {user.FavoriteMovies.length === 0 && <div className="text-center">Empty.</div>}
@@ -166,13 +161,12 @@ export class ProfileView extends React.Component {
                   </Row>
               </Card.Body>
           </Card.Body>
-          <Card.Text>
             <h3>Change my profile settings:</h3>
             <Card.Body className="update">
-              <Form className="update-form" onSubmit={(e) => this.profileUpdate(e, this.Username, this.Password, this.Email, this.Birthday)} >
+              <Form className="update-form" onSubmit={(e) => this.profileUpdate(e)} >
                 <Form.Group controlId="formBasicUsername">
                   <Form.Label className="form-label">Username:</Form.Label>
-                  <Form.Control type="text" placeholder="Change Username" defaultValue={user.Username} onChange={(e) => this.setUsername(e.target.value)} />
+                  <Form.Control type="text" placeholder="Change Username" defaultValue={this.state.Username} onChange={(e) => this.setUsername(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                   <Form.Label className="form-label">Password</Form.Label>
@@ -180,7 +174,7 @@ export class ProfileView extends React.Component {
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label className="form-label">Email</Form.Label>
-                  <Form.Control type="email" placeholder="New Email" onChange={(e) => this.setEmail(e.target.value)} />
+                  <Form.Control type="email" placeholder="New Email" value={this.state.Email} onChange={(e) => this.setEmail(e.target.value)} />
                 </Form.Group>
                 <Button variant="primary" className="update-button" type="submit" size="md">
                   update settings
@@ -188,7 +182,6 @@ export class ProfileView extends React.Component {
                 <Button onClick={(e) => this.deleteUser(e)} variant="danger" className='delete-button'>delete account</Button>
               </Form>
             </Card.Body>
-          </Card.Text>
         </Card>
         <Link to="/">
           <Button variant="primary">Back to Movies</Button>

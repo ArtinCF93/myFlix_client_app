@@ -20,7 +20,7 @@ class MovieView extends React.Component {
         let movie = this.props.movie;
         axios({
           method: 'post',
-          url: `https://theflix.herokuapp.com/users/${Username}/movies/${movie._id}`,
+          url: `https://quiet-headland-10477.herokuapp.com/users/${Username}/movies/${movie._id}`,
           headers: { Authorization: `Bearer ${token}` },
         })
           .then(() => {
