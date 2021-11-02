@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+
+.movie-view {
+    background-color: white;
+    margin-top: 2em;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    font-family: Montserrat;
+    max-width: 300px;
+}
+
+.movie-title {
+    margin: 30px;
+    font-weight: bold;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+
+.base-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.header {
+    font-family: Montserrat 700;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: white;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    margin-top: 2em;
+    width: 15em;
+}
+
+Form {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Montserrat;
+    margin-bottom: 31px;
+    color: white;
+}
+
+.userName {
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin-top: 15px;
+}
+
+.toBtn {
+    margin-top: 30px;
+    color: white;
+}
+.registrationForm {
+    margin-top: 70px;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+
+.profile-container {
+    margin-top: 50px;
+    background-color: #4862d4;
+    color:white;
+}
+
+.profile-heading {
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Montserrat;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-info {
+    font-size: 16px;
+    font-family: Montserrat;
+    justify-content: center;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+
+.navBarImage {
+    height: 40px;
+    margin-left: 30px;
+}
+
+.navbar {
+    margin-top:10px;
+    /* testing for git */
+}
+
+.linkText{ 
+    color: black ; 
+    margin-top: 16px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Montserrat;
+}
+
+.navButton {
+    width: 100px;
+    height: 40px;
+    border: solid 0px transparent;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: red;
+    background-color: transparent;
+    margin-left: 5px;
+}
+
+.navButton:hover {
+    cursor: pointer;
+}
+
+.dropDown {
+    margin-top: 8px;
+    margin-left: 15px;
+}
+
+.dropDown:hover {
+    cursor: pointer;
+    /* test */
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+
+
+
+.card-container {
+    text-align: center;
+    width: 170px;
+    margin: 50px;
+    height: 250px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    border-radius: 10px;
+}
+
+
+
+.card-container:hover {
+    transform: scale(1.1);
+    box-shadow:0px 0px 15px 0px;
+}
+
+
+
+.card-title{
+    font-family: Montserrat;
+    font-weight: bold;
+}
+
+
+
+.image-container img {
+    overflow: hidden;
+    height:100px;
+}
+
+.form-input {
+    text-align: center;
+    width: 30em;
+}
+.filter {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+body {
+    background-color: #4862d4;
+    color:#2c2c2e;
+}
+
+.container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+/*# sourceMappingURL=index.cdc5d2cb.css.map */

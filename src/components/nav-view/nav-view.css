@@ -11,22 +11,13 @@
 }
 
 .linkText{ 
-    color: white ; 
+    color: black ; 
     margin-top: 16px;
-    font-size: 18px;
-}
-
-/* .navButton {
-    width: 100px;
-    height: 40px;
-    border: solid 0px red;
-    border-radius: 8px;
-    margin-top: 19px;
-    font-family: Montserrat;
+    margin-left: 10px;
     font-weight: bold;
-    color: red;
-    background-color: transparent;
-} */
+    font-size: 16px;
+    font-family: Montserrat;
+}
 
 .navButton {
     width: 100px;
@@ -36,6 +27,7 @@
     font-weight: bold;
     color: red;
     background-color: transparent;
+    margin-left: 5px;
 }
 
 .navButton:hover {
@@ -44,10 +36,10 @@
 
 .dropDown {
     margin-top: 8px;
+    margin-left: 15px;
 }
 
 .dropDown:hover {
     cursor: pointer;
     /* test */
 }
-

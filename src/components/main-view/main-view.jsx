@@ -1,9 +1,13 @@
 //import React to use library
 import React from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import MovieCard from '../movie-card/movie-card';
+//import the action
+import {setMovies, setUsers} from '../../actions/actions';
+
+import MovieList from '../redux/movies-list/movies-list';
 import MovieView from '../movie-view/movie-view';
 import DirectorView from '../director-view/director-view';
 import GenreView from '../genre-view/genre-view';
@@ -29,11 +33,11 @@ class MainView extends React.Component {
     constructor() {
         super(); //use super() to initializes component state for use
         this.state = { //basiclly the variable
-            movies: [], //this is to reference how these varables start out. Movies for example starts as an empty array and will change later by the getMovies function.
+            // movies: [], //this is to reference how these varables start out. Movies for example starts as an empty array and will change later by the getMovies function.
             currentDirector: null,
             currentGenre: null,
             user: null,
-            users: [],
+            // users: [],
         }
     }
 
@@ -41,9 +45,10 @@ class MainView extends React.Component {
     //when a user successfully logs in, this function updates the user property in state
     onLoggedIn(authData) {
         console.log(authData);
-        this.setState({
-            user: authData.user.Username //saved in the user state.
-        });
+        // this.setState({
+        //     user: authData.user.Username //saved in the user state.
+        // });
+        this.props.setUsers(authData);
         // The auth information received from the handleSubmit method—the token and the user—is saved in localStorage
         localStorage.setItem('token', authData.token); //localStorage has a setItem method that accepts two arguments: a key and a value.
         localStorage.setItem('user', authData.user.Username);
@@ -54,9 +59,10 @@ class MainView extends React.Component {
         console.log(authData);
         alert('Thank you for Registering! You will now be returned to the Login page to Sign in');
         window.open('/', '_self');
-        this.setState({
-            user: authData.user.Username //saved in the user state.
-        });
+        // this.setState({
+        //     user: authData.user.Username //saved in the user state.
+        // });
+        this.props.setUsers(authData);
         // The auth information received from the handleSubmit method—the token and the user—is saved in localStorage
         localStorage.setItem('token', authData.token); //localStorage has a setItem method that accepts two arguments: a key and a value.
         localStorage.setItem('user', authData.user.Username);
@@ -69,9 +75,10 @@ class MainView extends React.Component {
         })
             .then(response => {
                 //Asign the result to the state
-                this.setState({
-                    movies: response.data
-                });
+                // this.setState({
+                    // movies: response.data
+                // });
+                this.props.setMovies(response.data);//function from actions is passed as a prop for the response data
             })
             .catch(function (error) {
                 console.log(error);
@@ -101,6 +108,7 @@ class MainView extends React.Component {
                 this.setState({
                     currentGenre: response.data //the response is the individual data of the individual collection with the ID indictaed in the paramter
                 });
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -112,9 +120,10 @@ class MainView extends React.Component {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
-                this.setState({
-                    users: response.data
-                });
+                // this.setState({
+                //     users: response.data
+                // });
+                this.props.setUsers(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -134,9 +143,11 @@ class MainView extends React.Component {
 
 
     render() { //implement a render method to render below code on screen
-        let movies = this.state.movies;
+        // let movies = this.state.movies;
+        let movies = this.props.movies;//setMovies will be connected to the MainView through this prop
         let user = this.state.user;
-        let users = this.state.users;
+        let users = this.props.users;
+        // let users = this.state.users;
         let currentDirector = this.state.currentDirector;
         let currentGenre = this.state.currentGenre; //storing response data in variable
 
@@ -155,12 +166,15 @@ class MainView extends React.Component {
                         if (movies.length === 0) {
                             return <div>...loading</div>;
                         }
-                        return movies.map(m => (
-                            <Col className='d-flex justify-content-center' md={3} key={m._id}>
-                                <MovieCard //name on the left is the name of the prop
-                                    movie={m} />
-                            </Col>
-                        ))
+                        // return movies.map(m => (
+                        //     <Col className='d-flex justify-content-center' md={3} key={m._id}>
+                        //         <MovieCard //name on the left is the name of the prop
+                        //             movie={m} />
+                        //     </Col>
+                        // ))
+                        return  <MovieList
+                                    movies={movies}//the movies prop is passed to MovieList as a prop of the same name, movies
+                                />
                     }} />
                     {/* Register view */}
                     <Route path="/register" render={() => {
@@ -181,7 +195,7 @@ class MainView extends React.Component {
                         if (movies.length === 0) {
                             return <div>...loading</div>;
                         }
-                        return <Col className='movieView d-flex justify-content-center'>
+                        return <Col className='d-flex justify-content-center' xs={4}>
                             <MovieView //will find the movie and display the movie that matches the title url parameter (param)
                                 movie={movies.find(m => m.Title === match.params.Title)}
                                 onBackClick={() => history.goBack()}
@@ -197,7 +211,7 @@ class MainView extends React.Component {
                                         onLoggedIn={(user) => this.onLoggedIn(user)} />
                                 </Col>
                             );
-                        return <Col md={8}>
+                        return <Col className='d-flex justify-content-center'>
                             <DirectorView 
                                 directorId={match.params.id}
                                 director={currentDirector}
@@ -213,8 +227,8 @@ class MainView extends React.Component {
                                 </Col>
                             );
                         if (movies.length === 0) return <div>...loading</div>;
-                        return <Col md={8}>
-                            <GenreView 
+                        return <Col className='d-flex justify-content-center'>
+                            <GenreView
                                 genreId={match.params.id} //matching the value of the paramter and storing it in a variable
                                 genre={currentGenre} //storing the response data as a prop
                                 getGenre={(token, id) => this.getGenre(token, id)} //this arrow function is what is being called into the prop Genreview
@@ -242,6 +256,17 @@ class MainView extends React.Component {
 }
 
 
+//will allow the component (the one you want to connect) to subscribe to store updates. Any time the store is updated, this function will be called.
+//takes a state as an arguement and returns the new props for the component, global state
+let mapStateToProps = state => {
+    return { 
+        movies: state.movies,
+        users: state.users }
+  }
+
 
 //can only export one item using the default keyword. Otherwise use export before a class statement
-export default MainView
+// export default MainView
+export default connect(mapStateToProps, { setMovies, setUsers } )(MainView);
+// First, the movies state is extracted from the store through the connect() function, before being passed as the movies prop for the MainView component.
+//the connect() function is meant to wrap any stateful componenet to a connect it to a store

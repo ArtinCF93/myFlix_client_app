@@ -27,7 +27,8 @@ class GenreView extends React.Component{
               <Button onClick={() => {
                 onBackClick(null); //passing null on a click even, to go back to null
               }}>Back</Button>
-      </div>        
+      </div>   
+      //test  
    )
  }
 }

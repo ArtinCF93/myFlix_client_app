@@ -32,7 +32,7 @@ export class NavBar extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <NavDropdown title="User" className='dropDown'>
-              <Nav.Link variant='primary' href={`/users/${user}`}><p className="linkText">User Profile</p></Nav.Link>
+              <Nav.Link href={`/users/${user}`}><p className="linkText">User Profile</p></Nav.Link>
                 <button className='navButton' onClick={() => {
                   this.onLoggedOut(), window.location.reload()
                     }}>

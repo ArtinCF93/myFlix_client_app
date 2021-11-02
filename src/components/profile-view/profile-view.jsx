@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import './profile-view.css'
+
 // bootstrap import
 import { Card, Button, Container, Form, Row, Col } from 'react-bootstrap';
 // ProfileView is a low-level component.Here are user’s favorite movies are listed
@@ -111,28 +113,22 @@ export class ProfileView extends React.Component {
     let user = this.props.user;
 
     return (
-      <Container className="profile-update-container">
-        <Card
-          className="border-color text-white bg-dark mb-3"
-        >
-          <h3>
-            Collection and Settings of
-            <br />
-            {user.Name}
+      <Container >
+        <Card className="profile-container">
+        <div className='profile-info'>
+          <h3 className='profile-heading'>
+            Collection and Settings of {user.Name}
           </h3>
           <Card.Body>
             <br />
             <Card.Text>
-              Username:
-              {user.Username}
+              Username: {user.Username}
             </Card.Text>
             <Card.Text>
-              Email:
-              {user.Email}
+              Email: {user.Email}
             </Card.Text>
             <Card.Text>
-              Birthday:
-              {user.Birthday}
+              Birthday: {user.Birthday}
             </Card.Text>
             <Card.Text>
                 My Favorites:
@@ -161,6 +157,7 @@ export class ProfileView extends React.Component {
                   </Row>
               </Card.Body>
           </Card.Body>
+          </div>
             <h3>Change my profile settings:</h3>
             <Card.Body className="update">
               <Form className="update-form" onSubmit={(e) => this.profileUpdate(e)} >
