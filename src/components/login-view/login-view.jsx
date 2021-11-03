@@ -30,6 +30,7 @@ const handleSubmit = (e) => {
     .then(response => {
       const data = response.data;
       props.onLoggedIn(data); //his method triggers the onLoggedIn method of your “main-view.jsx” file 
+      window.open('/', '_self');
     })
     .catch(e => {
       console.log('no such user')
