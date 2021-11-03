@@ -195,7 +195,7 @@ class MainView extends React.Component {
                         if (movies.length === 0) {
                             return <div>...loading</div>;
                         }
-                        return <Col className='d-flex justify-content-center' xs={4}>
+                        return <Col className='d-flex justify-content-center'>
                             <MovieView //will find the movie and display the movie that matches the title url parameter (param)
                                 movie={movies.find(m => m.Title === match.params.Title)}
                                 onBackClick={() => history.goBack()}

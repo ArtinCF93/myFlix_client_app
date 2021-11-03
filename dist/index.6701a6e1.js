@@ -23130,7 +23130,6 @@ class MainView extends _reactDefault.default.Component {
                             }));
                             return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                 className: "d-flex justify-content-center",
-                                xs: 4,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_movieViewDefault.default //will find the movie and display the movie that matches the title url parameter (param)
                                 , {
                                     movie: movies.find((m)=>m.Title === match.params.Title
