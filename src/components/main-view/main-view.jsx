@@ -65,7 +65,7 @@ class MainView extends React.Component {
         this.props.setUsers(authData);
         // The auth information received from the handleSubmit method—the token and the user—is saved in localStorage
         localStorage.setItem('token', authData.token); //localStorage has a setItem method that accepts two arguments: a key and a value.
-        localStorage.setItem('user', authData.user.Username);
+        localStorage.setItem('user', authData.user.Username); //this is transferred as a prop to profile view
         this.getMovies(authData.token); //triggered by the function below to get the list of movies
     }
 

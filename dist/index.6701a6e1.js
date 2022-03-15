@@ -22971,7 +22971,7 @@ class MainView extends _reactDefault.default.Component {
         this.props.setUsers(authData);
         // The auth information received from the handleSubmit method—the token and the user—is saved in localStorage
         localStorage.setItem('token', authData.token); //localStorage has a setItem method that accepts two arguments: a key and a value.
-        localStorage.setItem('user', authData.user.Username);
+        localStorage.setItem('user', authData.user.Username); //this is transferred as a prop to profile view
         this.getMovies(authData.token); //triggered by the function below to get the list of movies
     }
     getMovies(token) {
@@ -28289,7 +28289,7 @@ function LoginView(props) {
     let [password, setPassword] = _react.useState('');
     //destructered, useState always returns an array with 2 values
     //First value returns the current state, while the second value is a function that allows you to update your state
-    //the '' in useState('') is the intial value of your login variable
+    //the '' in useState('') is the intial value of your login variable; meaning, username = ''
     // in component class, this would look like below
     // this.state = {
     //     username: '',

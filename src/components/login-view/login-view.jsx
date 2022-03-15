@@ -13,7 +13,7 @@ export function LoginView(props) {
     let [password, setPassword] = useState('');
 //destructered, useState always returns an array with 2 values
 //First value returns the current state, while the second value is a function that allows you to update your state
-//the '' in useState('') is the intial value of your login variable
+//the '' in useState('') is the intial value of your login variable; meaning, username = ''
 // in component class, this would look like below
 // this.state = {
 //     username: '',
